@@ -6,20 +6,31 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
-    public void shouldSetCurrentNumber() {
+    public void NextNumber() {
         Radio radio = new Radio();
-        radio.setCurrentNumber(5);
+        radio.setNextCurrentNumber(5);
 
-        int expected = 5;
+        int expected = 6;
         int actual = radio.getCurrentNumber();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void moreThanMaxNumber() {
+    public void PreviousNumber() {
         Radio radio = new Radio();
-        radio.setCurrentNumber(10);
+        radio.setPreviousCurrentNumber(5);
+
+        int expected = 4;
+        int actual = radio.getCurrentNumber();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void MoreThanMaxNumber() {
+        Radio radio = new Radio();
+        radio.setNextCurrentNumber(10);
 
         int expected = 0;
         int actual = radio.getCurrentNumber();
@@ -30,7 +41,7 @@ public class RadioTest {
     @Test
     public void lessThanMinNumber() {
         Radio radio = new Radio();
-        radio.setCurrentNumber(-1);
+        radio.setPreviousCurrentNumber(-1);
 
         int expected = 9;
         int actual = radio.getCurrentNumber();
@@ -39,11 +50,22 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetCurrentVolume() {
+    public void NextVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(7);
+        radio.setNextCurrentVolume(7);
 
-        int expected = 7;
+        int expected = 8;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void PreviousVolume() {
+        Radio radio = new Radio();
+        radio.setPreviousCurrentVolume(7);
+
+        int expected = 6;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -52,7 +74,7 @@ public class RadioTest {
     @Test
     public void moreThanMaxVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(11);
+        radio.setNextCurrentVolume(11);
 
         int expected = 10;
         int actual = radio.getCurrentVolume();
@@ -63,7 +85,7 @@ public class RadioTest {
     @Test
     public void lessThanMinVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(-1);
+        radio.setPreviousCurrentVolume(-1);
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
