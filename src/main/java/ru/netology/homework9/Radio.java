@@ -4,13 +4,21 @@ public class Radio {
 
     // Входные данные для каналов
     private int currentNumber;
+    private int amountNumbers = 10;
     private int minNumber = 0;
-    private int maxNumber = 9;
 
     // Входные данные для громкости
     private int currentVolume;
     private int minVolume = 0;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
+
+    public Radio (int amountNumbers) {
+        this.amountNumbers = amountNumbers;
+    }
+
+    public Radio () {
+
+    }
 
     // Геттер для номера канала
     public int getCurrentNumber() {
@@ -27,7 +35,7 @@ public class Radio {
         if (newCurrentNumber < minNumber) {
             return;
         }
-        if (newCurrentNumber > maxNumber) {
+        if (newCurrentNumber > amountNumbers - 1) {
             return;
         }
         currentNumber = newCurrentNumber;
@@ -46,7 +54,7 @@ public class Radio {
 
     // Следующий канал
     public void nextNumber() {
-        if (currentNumber < maxNumber) {
+        if (currentNumber < amountNumbers - 1) {
             currentNumber = currentNumber + 1;
         } else {
             currentNumber = minNumber;
@@ -57,7 +65,7 @@ public class Radio {
         if (currentNumber > minNumber) {
             currentNumber = currentNumber - 1;
         } else {
-            currentNumber = maxNumber;
+            currentNumber = amountNumbers - 1;
         }
     }
 
