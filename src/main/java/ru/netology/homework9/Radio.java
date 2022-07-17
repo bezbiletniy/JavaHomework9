@@ -22,45 +22,54 @@ public class Radio {
         return currentVolume;
     }
 
-    // Следующий канал
-    public void setNextCurrentNumber(int newCurrentNumber) {
-        if (newCurrentNumber > maxNumber) {
-            newCurrentNumber = minNumber;
-        } else {
-            newCurrentNumber = newCurrentNumber + 1;
-        }
-        currentNumber = newCurrentNumber;
-    }
-
-    // Предыдущий канал
-    public void setPreviousCurrentNumber(int newCurrentNumber) {
+    // Сеттер для переключения каналов
+    public void setCurrentNumber(int newCurrentNumber) {
         if (newCurrentNumber < minNumber) {
-            newCurrentNumber = maxNumber;
-        } else {
-            newCurrentNumber = newCurrentNumber - 1;
+            return;
+        }
+        if (newCurrentNumber > maxNumber) {
+            return;
         }
         currentNumber = newCurrentNumber;
     }
 
-    // Увеличение громкости
-    public void setNextCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > maxVolume) {
-            newCurrentVolume = maxVolume;
-        } else {
-            newCurrentVolume = newCurrentVolume + 1;
-        }
-        currentVolume = newCurrentVolume;
-    }
-
-    // Уменьшение громкости
-    public void setPreviousCurrentVolume(int newCurrentVolume) {
+    // Сеттер для изменения громкости
+    public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < minVolume) {
-            newCurrentVolume = minVolume;
-        } else {
-            newCurrentVolume = newCurrentVolume - 1;
+            return;
+        }
+        if (newCurrentVolume > maxVolume) {
+            return;
         }
         currentVolume = newCurrentVolume;
     }
 
+    // Следующий канал
+    public void nextNumber() {
+        if (currentNumber < maxNumber) {
+            currentNumber = currentNumber + 1;
+        } else {
+            currentNumber = minNumber;
+        }
+    }
 
+    public void previousNumber() {
+        if (currentNumber > minNumber) {
+            currentNumber = currentNumber - 1;
+        } else {
+            currentNumber = maxNumber;
+        }
+    }
+
+    public void nextVolume() {
+        if (currentVolume < maxVolume) {
+            currentVolume = currentVolume + 1;
+        }
+    }
+
+    public void previousVolume() {
+        if (currentVolume > minVolume) {
+            currentVolume = currentVolume - 1;
+        }
+    }
 }
